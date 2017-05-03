@@ -267,7 +267,7 @@ bot.dialog('/homeMenu', [
     },
     function (session, results) {
         session.userData.menuChoise = results.response.entity;
-        session.userData.dddd = 'ffff';
+        session.userData.dddd = 'cccc';
 
         if (session.userData.menuChoise == 'חילוץ') {
 
