@@ -393,7 +393,6 @@ bot.dialog('/homeMenu', [
 
 
                             var msg = new builder.VideoCard(session)
-                                .textFormat(builder.TextFormat.xml)
                                 .attachments([
                                     new builder.ThumbnailCard(session)
                                         .title('Big Buck Bunny')
