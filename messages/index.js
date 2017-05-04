@@ -337,9 +337,9 @@ bot.dialog('/homeMenu', [
     },
     function (session, results) {
 
-        session.userData.helpSubject = results.response.entity.url;
+        session.userData.helpSubject = results.response.entity;
 
-        session.send(results.response.entity.url);
+        session.send(results.response.entity[0].url);
 
         session.send("מעולה! עכשיו אני יכול לעזור לך. אגב כבר איתרתי את מספר הפוליסה שלך בחברת הביטוח כך שהכל מטופל. אני חוזר לעדכן עוד כמה דקות..");
 
