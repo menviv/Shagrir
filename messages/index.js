@@ -302,13 +302,12 @@ bot.dialog('/homeMenu', [
                                 .attachments([
                                     new builder.ThumbnailCard(session)
                                         .title('אז אלה הפעולות שאני יכול לעשות עבורך:')
-                                        .subtitle("  ")
-                                        .text( '')
+                                        .subtitle("זה הזמן לבחור :)")
                                         .images([
                                             builder.CardImage.create(session, 'http://www.danisegman.co.il/AllSites/873/Assets/shagrir.png')
                                         ])
                                         .buttons([
-                                            builder.Prompts.choice(session, "זה הזמן לבחור :) ", menuData)
+                                            builder.Prompts.choice(session, menuData)
                                         ])
                                 ]);
                             session.send(msg);             
