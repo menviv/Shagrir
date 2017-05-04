@@ -188,7 +188,7 @@ bot.dialog('/Login', [
             builder.CardAction.openUrl(session, 'https://docs.botframework.com/en-us/', 'Get Started')
         ]);
 
-*/
+
 
 
                             var msg = new builder.Message(session)
@@ -200,6 +200,20 @@ bot.dialog('/Login', [
                                         .image(builder.CardImage.create(session, 'http://img.clipartall.com/toy-car-clipart-free-clipartall-toy-car-clipart-700_513.jpg'))
                                 ]);
                             session.send(msg);
+
+*/
+                            var msg = new builder.Message(session)
+                                .textFormat(builder.TextFormat.xml)
+                                .attachments([
+                                    new builder.ThumbnailCard(session)
+                                        .title('ברוך שובך ' + result[0].CustomerName)
+                                        .subtitle(" זכור לי שבבעלותך רכב מסוג ")
+                                        .text( result[0].carType +  " של יצרן " + result[0].CarManufacture + " משנת " + result[0].CarManuYear)
+                                        .images([
+                                            builder.CardImage.create(session, 'http://img.clipartall.com/toy-car-clipart-free-clipartall-toy-car-clipart-700_513.jpg')
+                                        ])
+                                ]);
+                            session.send(msg);                            
 
 
 
@@ -296,7 +310,6 @@ bot.dialog('/homeMenu', [
     },
     function (session, results) {
         session.userData.menuChoise = results.response.entity;
-        session.userData.dddd = 'cccc';
 
         if (session.userData.menuChoise == 'חילוץ') {
 
@@ -320,26 +333,6 @@ bot.dialog('/homeMenu', [
                 };
 
                 locationDialog.getLocation(session, options);                
-
-             //   locationDialog.getLocation(session,
-              //  { prompt: "מה המיקום המדויק שלך? במידה ואצטרך לשלוח חילוץ" });
-
-/*
-                var options = {
-                    prompt: "מה המיקום המדויק שלך? במידה ואצטרך לשלוח חילוץ",
-                    useNativeControl: true,
-                    reverseGeocode: true,
-                    requiredFields:
-                        locationDialog.LocationRequiredFields.streetAddress |
-                        locationDialog.LocationRequiredFields.locality |
-                        locationDialog.LocationRequiredFields.region |
-                        locationDialog.LocationRequiredFields.postalCode |
-                        locationDialog.LocationRequiredFields.country
-                };
-
-                locationDialog.getLocation(session, options);
-
-                */
 
 
             }
