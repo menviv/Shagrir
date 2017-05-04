@@ -271,11 +271,12 @@ bot.dialog('/homeMenu', [
 
         if (session.userData.menuChoise == 'חילוץ') {
 
-            if (session.message.address.channelId == 'facebook' || session.message.address.channelId == 'telegram') {
+            if (session.message.address.channelId == 'facebook') {
 
                 var options = {
                     prompt: "מה המיקום המדויק שלך? במידה ואצטרך לשלוח חילוץ",
-                    useNativeControl: true
+                    useNativeControl: true,
+                    skipConfirmationAsk: true
                 };
 
                 locationDialog.getLocation(session, options);
@@ -283,8 +284,16 @@ bot.dialog('/homeMenu', [
 
             } else {
 
-                locationDialog.getLocation(session,
-                { prompt: "מה המיקום המדויק שלך? במידה ואצטרך לשלוח חילוץ" });
+                var options = {
+                    prompt: "מה המיקום המדויק שלך? במידה ואצטרך לשלוח חילוץ",
+                    useNativeControl: false,
+                    skipConfirmationAsk: true
+                };
+
+                locationDialog.getLocation(session, options);                
+
+             //   locationDialog.getLocation(session,
+              //  { prompt: "מה המיקום המדויק שלך? במידה ואצטרך לשלוח חילוץ" });
 
 /*
                 var options = {
