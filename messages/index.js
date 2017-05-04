@@ -337,7 +337,7 @@ bot.dialog('/homeMenu', [
     },
     function (session, results) {
 
-        session.userData.helpSubject = results.response.entity;
+        session.userData.helpSubject = results.response;
 
         session.send(results.response.entity.url);
 
