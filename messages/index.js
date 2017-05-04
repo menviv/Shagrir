@@ -389,7 +389,7 @@ bot.dialog('/homeMenu', [
 
         session.send(msg);
 
-        */
+       
 
 
                             var msg = new builder.Message(session)
@@ -407,6 +407,9 @@ bot.dialog('/homeMenu', [
                                         ])
                                 ]);
                             session.send(msg);
+
+ */
+
 
                             session.send("https://youtu.be/iOy1lOKrwsI");
 
