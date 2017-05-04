@@ -217,7 +217,7 @@ var menuData = {
         units: 200,
         total: "$6,000"
     },
-    "בהרשמה לשירות חדש": {
+    'להרשם לשירות': {
         units: 100,
         total: "$3,000"
     },
@@ -310,7 +310,7 @@ bot.dialog('/homeMenu', [
 
             }
 
-        } else if (session.userData.menuChoise == 'בהרשמה לשירות חדש') {
+        } else if (session.userData.menuChoise == 'להרשם לשירות') {
 
             session.beginDialog("/createLead");
 
@@ -340,11 +340,14 @@ bot.dialog('/homeMenu', [
         session.userData.helpSubject = helpData[results.response.entity];
 
         var helpSubject = helpData[results.response.entity];
-        session.send("We sold %(url)s units for a total of %(total)s.", helpSubject); 
 
-       // session.send(results.response[0].url);
-
+        session.sendTyping();
+        
         session.send("מעולה! עכשיו אני יכול לעזור לך. אגב כבר איתרתי את מספר הפוליסה שלך בחברת הביטוח כך שהכל מטופל. אני חוזר לעדכן עוד כמה דקות..");
+
+        session.sendTyping();
+
+        session.send("בינתיים, לשיקולך אם לצפות בסרטון ההדרכה שלנו. יכול להיות שהוא יסייע לך: %(url)s", helpSubject); 
 
         var LogTimeStamp = moment().format(DateFormat);
 
@@ -372,27 +375,6 @@ bot.dialog('/homeMenu', [
 
 /*
 
-        function createVideoCard(session) {
-            return new builder.VideoCard(session)
-                .title('Big Buck Bunny')
-                .subtitle('by the Blender Institute')
-                .text('Big Buck Bunny (code-named Peach) is a short computer-animated comedy film by the Blender Institute, part of the Blender Foundation. Like the foundation\'s previous film Elephants Dream, the film was made using Blender, a free software application for animation made by the same foundation. It was released as an open-source film under Creative Commons License Attribution 3.0.')
-                .image(builder.CardImage.create(session, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/220px-Big_buck_bunny_poster_big.jpg'))
-                .media([
-                    { url: 'http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4' }
-                ])
-                .buttons([
-                    builder.CardAction.openUrl(session, 'https://peach.blender.org/', 'Learn More')
-                ]);
-        }
-
-        var msg = new builder.Message(session);
-
-        msg = createVideoCard(session);
-
-        session.send(msg);
-
-       
 
 
                             var msg = new builder.Message(session)
@@ -414,14 +396,13 @@ bot.dialog('/homeMenu', [
  */
 
 
-                            session.send("https://youtu.be/iOy1lOKrwsI");
+                       //     session.send("https://youtu.be/iOy1lOKrwsI");
 
 
 
-
+        session.userData.ticketopened = 'true';              
         
-
-        //session.beginDialog("/homeMenu");
+        session.beginDialog("/homeMenu");
 
     }
 ]);
