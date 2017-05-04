@@ -275,11 +275,7 @@ bot.dialog('/homeMenu', [
 
                 var options = {
                     prompt: "מה המיקום המדויק שלך? במידה ואצטרך לשלוח חילוץ",
-                    useNativeControl: true,
-                    reverseGeocode: true,
-                    requiredFields:
-                        locationDialog.LocationRequiredFields.region |
-                        locationDialog.LocationRequiredFields.country
+                    useNativeControl: true
                 };
 
                 locationDialog.getLocation(session, options);
