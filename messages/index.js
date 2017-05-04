@@ -339,7 +339,7 @@ bot.dialog('/homeMenu', [
 
         session.userData.helpSubject = results.response.entity;
 
-        session.send(results.response.url);
+        session.send(results.response.entity.url);
 
         session.send("מעולה! עכשיו אני יכול לעזור לך. אגב כבר איתרתי את מספר הפוליסה שלך בחברת הביטוח כך שהכל מטופל. אני חוזר לעדכן עוד כמה דקות..");
 
@@ -375,7 +375,7 @@ bot.dialog('/homeMenu', [
                 .text('Big Buck Bunny (code-named Peach) is a short computer-animated comedy film by the Blender Institute, part of the Blender Foundation. Like the foundation\'s previous film Elephants Dream, the film was made using Blender, a free software application for animation made by the same foundation. It was released as an open-source film under Creative Commons License Attribution 3.0.')
                 .image(builder.CardImage.create(session, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/220px-Big_buck_bunny_poster_big.jpg'))
                 .media([
-                    { url: 'https://youtu.be/VAFWO0Fc6zM' }
+                    { url: 'http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4' }
                 ])
                 .buttons([
                     builder.CardAction.openUrl(session, 'https://peach.blender.org/', 'Learn More')
