@@ -466,7 +466,30 @@ bot.dialog('/createLead', [
     },
     function (session, results) {
         session.userData.productName = results.response.entity;
-        builder.Prompts.number(session, "Hi " + results.response + ", How many years have you been coding?"); 
+
+        var msg = new builder.Message(session)
+            .textFormat(builder.TextFormat.xml)
+            .attachments([
+                new builder.ThumbnailCard(session)
+                    .title('ברוך שובך ' + result[0].CustomerName)
+                    .subtitle(" זכור לי שבבעלותך רכב מסוג ")
+                    .text( result[0].carType +  " של יצרן " + result[0].CarManufacture + " משנת " + result[0].CarManuYear)
+                    .images([
+                        builder.CardImage.create(session, 'http://img.clipartall.com/toy-car-clipart-free-clipartall-toy-car-clipart-700_513.jpg')
+                    ])
+                    .buttons([
+                        builder.CardAction.dialogAction(session, "createLeadsub", "לרכוש מנוי לשירותי דרך וגרירה"),
+                        builder.CardAction.dialogAction(session, "createLeadsub", "להכיר את שירותי דרך ועדיף"),
+                        builder.CardAction.dialogAction(session, "createLeadsub", "לרכוש מצבר"),
+                        builder.CardAction.dialogAction(session, "createLeadsub", "למצוא מרכז שירות קרוב")
+                    ])
+            ]);
+
+        session.send(msg);  
+
+
+
+        
     },
     function (session, results) {
         session.userData.coding = results.response;
@@ -479,6 +502,26 @@ bot.dialog('/createLead', [
                     " years and use " + session.userData.language + ".");
     }
 ]);
+
+
+
+
+
+
+
+bot.dialog('/openLeadURLinfo', [
+    function (session, args) {
+
+        var option = args.data;
+
+        session.send("option: ", option);
+
+        session.endDialog();
+
+        //session.beginDialog("/UserResponseToTicket");
+    }
+]);
+bot.beginDialogAction('createLeadsub', '/openLeadURLinfo'); 
 
 
 
