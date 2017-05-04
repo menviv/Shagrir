@@ -271,7 +271,7 @@ bot.dialog('/homeMenu', [
 
         if (session.userData.menuChoise == 'חילוץ') {
 
-            if (session.message.address.channelId == 'facebook') {
+            if (session.message.address.channelId == 'facebook' || session.message.address.channelId == 'telegram') {
 
                 var options = {
                     prompt: "מה המיקום המדויק שלך? במידה ואצטרך לשלוח חילוץ",
