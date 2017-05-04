@@ -392,9 +392,9 @@ bot.dialog('/homeMenu', [
         */
 
 
-                            var msg = new builder.VideoCard(session)
+                            var msg = new builder.Message(session)
                                 .attachments([
-                                    new builder.ThumbnailCard(session)
+                                    new builder.VideoCard(session)
                                         .title('Big Buck Bunny')
                                         .subtitle('by the Blender Institute')
                                         .text('Big Buck Bunny (code-named Peach) is a short computer-animated comedy film by the Blender Institute, part of the Blender Foundation. Like the foundation\'s previous film Elephants Dream, the film was made using Blender, a free software application for animation made by the same foundation. It was released as an open-source film under Creative Commons License Attribution 3.0.')
