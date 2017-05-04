@@ -297,7 +297,23 @@ bot.dialog('/homeMenu', [
 
         if (session.userData.ticketopened != 'true') {
 
-            builder.Prompts.choice(session, "אז היום אני עוזר לך ב: ", menuData);
+                            var msg = new builder.Message(session)
+                                .textFormat(builder.TextFormat.xml)
+                                .attachments([
+                                    new builder.ThumbnailCard(session)
+                                        .title('אז אלה הפעולות שאני יכול לעשות עבורך:')
+                                        .subtitle("  ")
+                                        .text( '')
+                                        .images([
+                                            builder.CardImage.create(session, 'http://www.danisegman.co.il/AllSites/873/Assets/shagrir.png')
+                                        ])
+                                        .buttons([
+                                            builder.Prompts.choice(session, "זה הזמן לבחור :) ", menuData)
+                                        ])
+                                ]);
+                            session.send(msg);             
+
+            //builder.Prompts.choice(session, "אז היום אני עוזר לך ב: ", menuData);
 
         } else {
 
