@@ -230,15 +230,15 @@ var menuData = {
 
 var helpData = {
     "הרכב לא מניע": {
-        units: 200,
+        url: "https://youtu.be/DLZyKSIKljk",
         total: "$6,000"
     },
     "יש לי תקר": {
-        units: 100,
+        url: "https://youtu.be/iOy1lOKrwsI",
         total: "$3,000"
     },
     "יש לי רעשים מוזרים בזמן נסיעה": {
-        units: 300,
+        url: "https://youtu.be/DBh6Ua_SXEo",
         total: "$9,000"
     }
 };
@@ -339,7 +339,9 @@ bot.dialog('/homeMenu', [
 
         session.userData.helpSubject = results.response.entity;
 
-        session.send("מעולה! עכשיו אני יכול לעזור לך. אגב כבר איתרתי את מספר הפוליסה שלך בחברת הביטוח כך שהכל מטופל. אני חוזר לעדכן עוד כמצה דקות..");
+        session.send(results.response.url);
+
+        session.send("מעולה! עכשיו אני יכול לעזור לך. אגב כבר איתרתי את מספר הפוליסה שלך בחברת הביטוח כך שהכל מטופל. אני חוזר לעדכן עוד כמה דקות..");
 
         var LogTimeStamp = moment().format(DateFormat);
 
@@ -364,31 +366,45 @@ bot.dialog('/homeMenu', [
 
         session.userData.ticketopened = 'true';
 
-        session.beginDialog("/homeMenu");
+
+
+        function createVideoCard(session) {
+            return new builder.VideoCard(session)
+                .title('Big Buck Bunny')
+                .subtitle('by the Blender Institute')
+                .text('Big Buck Bunny (code-named Peach) is a short computer-animated comedy film by the Blender Institute, part of the Blender Foundation. Like the foundation\'s previous film Elephants Dream, the film was made using Blender, a free software application for animation made by the same foundation. It was released as an open-source film under Creative Commons License Attribution 3.0.')
+                .image(builder.CardImage.create(session, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/220px-Big_buck_bunny_poster_big.jpg'))
+                .media([
+                    { url: 'https://youtu.be/VAFWO0Fc6zM' }
+                ])
+                .buttons([
+                    builder.CardAction.openUrl(session, 'https://peach.blender.org/', 'Learn More')
+                ]);
+        }
+
+        createVideoCard(session);
+
+        //session.beginDialog("/homeMenu");
 
     }
 ]);
 
 
 var servicesData = {
-    "מנוי לשירותי דרך וגרירה": {
-        units: 200,
+    "לרכוש מנוי לשירותי דרך וגרירה": {
+        url: "https://www.shagrir.co.il/?lang=il&category=shiroutdereh&page=47",
         total: "$6,000"
     },
-    "שירותי דרך ועדיף": {
-        units: 100,
+    "להכיר את שירותי דרך ועדיף": {
+        url: "https://www.shagrir.co.il/?lang=il&category=shiroutdereh",
         total: "$3,000"
     },
-    "משולב אוטומטי": {
-        units: 300,
+    "לרכוש מצבר": {
+        url: "https://www.shagrir.co.il/?lang=il&category=shiroutdereh&page=49",
         total: "$9,000"
     },
-    "משולב אוטומטי + עדיף": {
-        units: 300,
-        total: "$9,000"
-    },
-    " מונית פרטי": {
-        units: 300,
+    "למצוא מרכז שירות קרוב": {
+        url: "https://www.shagrir.co.il/?lang=il&category=garage",
         total: "$9,000"
     }
 };
@@ -404,7 +420,7 @@ bot.dialog('/createLead', [
         builder.Prompts.choice(session, "מעולה! באיזה שירות היית רוצה להתעניין?", servicesData); 
     },
     function (session, results) {
-        session.userData.name = results.response;
+        session.userData.productName = results.response.entity;
         builder.Prompts.number(session, "Hi " + results.response + ", How many years have you been coding?"); 
     },
     function (session, results) {
