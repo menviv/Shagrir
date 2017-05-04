@@ -306,13 +306,10 @@ bot.dialog('/homeMenu', [
                                         .images([
                                             builder.CardImage.create(session, 'http://www.danisegman.co.il/AllSites/873/Assets/shagrir.png')
                                         ])
-                                        .buttons([
-                                            builder.Prompts.choice(session, menuData)
-                                        ])
                                 ]);
                             session.send(msg);             
 
-            //builder.Prompts.choice(session, "אז היום אני עוזר לך ב: ", menuData);
+            builder.Prompts.choice(session, "", menuData);
 
         } else {
 
