@@ -337,7 +337,10 @@ bot.dialog('/homeMenu', [
     },
     function (session, results) {
 
-        session.userData.helpSubject = results.response.entity;
+        session.userData.helpSubject = helpData[results.response.entity];
+
+        var helpSubject = helpData[results.response.entity];
+        session.send("We sold %(url)d units for a total of %(total)s.", helpSubject); 
 
        // session.send(results.response[0].url);
 
